@@ -1,23 +1,35 @@
-package entities;
+package Modelos;
+import java.sql.Connection;
+import java.sql.Date;
 
 public class Bateria {
+    private String idBateria;
     private String modelo;
     private String manufacturador;
     private String serial;
-    private String Capacidad_carga_fabrica;
-    private String fecha_Registro;
+    private Integer Capacidad_carga_fabrica;
+    private Date fecha_Registro;
     private String estado;
 
     public Bateria() {
     }
 
-    public Bateria(String modelo, String manufacturador, String serial, String capacidad_carga_fabrica, String fecha_Registro, String estado) {
+    public Bateria(String idBateria, String modelo, String manufacturador, String serial, Integer capacidad_carga_fabrica, Date fecha_Registro, String estado) {
+        this.idBateria = idBateria;
         this.modelo = modelo;
         this.manufacturador = manufacturador;
         this.serial = serial;
         Capacidad_carga_fabrica = capacidad_carga_fabrica;
         this.fecha_Registro = fecha_Registro;
         this.estado = estado;
+    }
+
+    public String getIdBateria() {
+        return idBateria;
+    }
+
+    public void setIdBateria(String idBateria) {
+        this.idBateria = idBateria;
     }
 
     public String getModelo() {
@@ -44,19 +56,19 @@ public class Bateria {
         this.serial = serial;
     }
 
-    public String getCapacidad_carga_fabrica() {
+    public Integer getCapacidad_carga_fabrica() {
         return Capacidad_carga_fabrica;
     }
 
-    public void setCapacidad_carga_fabrica(String capacidad_carga_fabrica) {
+    public void setCapacidad_carga_fabrica(Integer capacidad_carga_fabrica) {
         Capacidad_carga_fabrica = capacidad_carga_fabrica;
     }
 
-    public String getFecha_Registro() {
+    public Date getFecha_Registro() {
         return fecha_Registro;
     }
 
-    public void setFecha_Registro(String fecha_Registro) {
+    public void setFecha_Registro(Date fecha_Registro) {
         this.fecha_Registro = fecha_Registro;
     }
 
@@ -66,5 +78,13 @@ public class Bateria {
 
     public void setEstado(String estado) {
         this.estado = estado;
+    }
+
+    public void insertarEnBase(Connection connection, Bateria bateria){
+
+    }
+
+    public void buscar(Connection connection, int id){
+
     }
 }

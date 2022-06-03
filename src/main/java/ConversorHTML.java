@@ -1,6 +1,6 @@
-import entities.Bateria;
-import entities.Historial_Capacidad;
-import entities.Laptop;
+import Modelos.Bateria;
+import Modelos.Historial_Capacidad;
+import Modelos.Laptop;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -10,6 +10,8 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.StringReader;
+import java.text.ParseException;
+import java.sql.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -74,14 +76,16 @@ public class ConversorHTML{
                 bateria.setSerial(reader.readLine());
             }
             if (aux.equals(capacidadFabrica)) {
-                bateria.setCapacidad_carga_fabrica(reader.readLine().substring(0,6));
+                String conv = reader.readLine().substring(0,6);
+                conv = conv.replace(".","");
+                bateria.setCapacidad_carga_fabrica(Integer.valueOf(conv));
             }
             aux = reader.readLine();
         }
         return bateria;
     }
 
-    public List<Historial_Capacidad> transformarDatosHistoricoBateria(BufferedReader reader) throws IOException {
+    public List<Historial_Capacidad> transformarDatosHistoricoBateria(BufferedReader reader) throws IOException, ParseException {
         //Variables
         Historial_Capacidad historialCapacidad;
         List<Historial_Capacidad> listaCapacidades = new LinkedList<>();
@@ -101,14 +105,16 @@ public class ConversorHTML{
             if (aux.length()>11)
                 aux = aux.substring(0,aux.length()-13);
 
-            historialCapacidad.setFecha(aux);
+            Date fecha = Date.valueOf(aux);
+            historialCapacidad.setFecha(fecha);
 
             aux = reader.readLine();
-            aux = aux.substring(0,aux.length()-4);
-            historialCapacidad.setCapacidad_carga_real(aux);
-
-            listaCapacidades.add(historialCapacidad);
-
+            if (aux.length()>=2){
+                aux = aux.substring(0,aux.length()-4);
+                aux = aux.replace(".","");
+                historialCapacidad.setCapacidad_carga_actual(Integer.valueOf(aux));
+                listaCapacidades.add(historialCapacidad);
+            }
             aux = reader.readLine();
         }
         return listaCapacidades;
