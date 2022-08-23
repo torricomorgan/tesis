@@ -1,6 +1,8 @@
-import Modelos.Bateria;
-import Modelos.Historial_Capacidad;
-import Modelos.Laptop;
+package Tesis;
+
+import Tesis.Modelos.Bateria;
+import Tesis.Modelos.Historial_Capacidad;
+import Tesis.Modelos.Laptop;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -10,7 +12,6 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.StringReader;
-import java.text.ParseException;
 import java.sql.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -85,7 +86,7 @@ public class ConversorHTML{
         return bateria;
     }
 
-    public List<Historial_Capacidad> transformarDatosHistoricoBateria(BufferedReader reader) throws IOException, ParseException {
+    public List<Historial_Capacidad> transformarDatosHistoricoBateria(BufferedReader reader) throws IOException {
         //Variables
         Historial_Capacidad historialCapacidad;
         List<Historial_Capacidad> listaCapacidades = new LinkedList<>();

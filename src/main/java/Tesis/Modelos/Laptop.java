@@ -1,4 +1,4 @@
-package Modelos;
+package Tesis.Modelos;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -15,7 +15,7 @@ public class Laptop {
         this.fecha_Registro = fecha_Registro;
     }
 
-   public String getNombre_PC() {
+    public String getNombre_PC() {
         return nombre_PC;
     }
 
@@ -35,7 +35,8 @@ public class Laptop {
 
     }
 
-    public void buscar(Connection connection, int id){
+    public boolean existe(Connection connection, String nombre_PC){
 
+        return true;
     }
 }

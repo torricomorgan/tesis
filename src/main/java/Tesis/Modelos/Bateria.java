@@ -1,4 +1,4 @@
-package Modelos;
+package Tesis.Modelos;
 import java.sql.Connection;
 import java.sql.Date;
 
@@ -19,7 +19,7 @@ public class Bateria {
         this.modelo = modelo;
         this.manufacturador = manufacturador;
         this.serial = serial;
-        Capacidad_carga_fabrica = capacidad_carga_fabrica;
+        this.Capacidad_carga_fabrica = capacidad_carga_fabrica;
         this.fecha_Registro = fecha_Registro;
         this.estado = estado;
     }
@@ -84,7 +84,8 @@ public class Bateria {
 
     }
 
-    public void buscar(Connection connection, int id){
+    public boolean existe(Connection connection, String idBateria){
 
+        return true;
     }
 }

@@ -1,7 +1,8 @@
-package Modelos;
+package Tesis.Modelos;
 
 import java.sql.Connection;
 import java.sql.Date;
+import java.util.List;
 
 public class Historial_Capacidad {
     private Integer idHistorialCapacidad;
@@ -13,15 +14,14 @@ public class Historial_Capacidad {
     public Historial_Capacidad() {
     }
 
-    public Historial_Capacidad(Integer idHistorialCapacidad, Integer capacidad_carga_actual, Float desgaste, Date fecha, String idBateria) {
-        this.idHistorialCapacidad = idHistorialCapacidad;
+    public Historial_Capacidad(Integer capacidad_carga_actual, Float desgaste, Date fecha, String idBateria) {
         this.capacidad_carga_actual = capacidad_carga_actual;
         this.desgaste = desgaste;
         this.fecha = fecha;
         this.idBateria = idBateria;
     }
 
-  public Integer getIdHistorialCapacidad() {
+    public Integer getIdHistorialCapacidad() {
         return idHistorialCapacidad;
     }
 
@@ -61,11 +61,14 @@ public class Historial_Capacidad {
         this.idBateria = idBateria;
     }
 
+    public void insertarListaEnBase(Connection connection, List<Historial_Capacidad> listHistorialCapacidad){
+        for (Historial_Capacidad hist: listHistorialCapacidad) {
+            //Por programar
+        }
+    }
+
     public void insertarEnBase(Connection connection, Historial_Capacidad historialCapacidad){
 
     }
 
-    public void buscar(Connection connection, int id){
-
-    }
 }
