@@ -35,7 +35,7 @@ public class main {
             laptop = conversorHTML.transformarDatosLaptop(datosHtml);
             bateria = conversorHTML.transformarDatosBateria(datosHtml);
             capacidadList = conversorHTML.transformarDatosHistoricoBateria(datosHtml);
-        }
+        } //Fin del try del BufferReader
 
         //Borrar luego
         System.out.println(laptop.getNombre_PC());
@@ -59,6 +59,8 @@ public class main {
                 Boolean bateriaExiste = bateria.existe(connection, bateria.getIdBateria());
                 if(!bateriaExiste){
                     bateria.insertarEnBase(connection,bateria);
+                    String idBat = bateria.buscarBateriaLaptop(connection, laptop.getNombre_PC());
+                    bateria.darDeBaja(connection, idBat);
                     histAux.insertarListaEnBase(connection, capacidadList);
                 }
                 //Si la bateria ya existe solo se inserta el valor actual al historial

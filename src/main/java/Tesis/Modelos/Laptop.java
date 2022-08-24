@@ -1,7 +1,10 @@
 package Tesis.Modelos;
 
+import Tesis.SQL;
+
 import java.sql.Connection;
 import java.sql.Date;
+import java.text.MessageFormat;
 
 public class Laptop {
     private String nombre_PC;
@@ -32,11 +35,19 @@ public class Laptop {
     }
 
     public void insertarEnBase(Connection connection, Laptop laptop){
-
+        SQL sql = new SQL();
+        String query = "INSERT INTO baterias_db.dbo.laptop(nombre_pc, fecha_registro)VALUES ({0}, {1});";
+        query = MessageFormat.format(query, laptop.getNombre_PC(), laptop.getFecha_Registro());
+        sql.ejecutarQuery(query,connection);
     }
 
     public boolean existe(Connection connection, String nombre_PC){
-
-        return true;
+        SQL sql = new SQL();
+        String query = "SELECT nombre_pc FROM baterias_db.dbo.laptop WHERE nombre_pc = '{0}'";
+        query = MessageFormat.format(query, nombre_PC);
+        if (sql.existe(query,connection))
+            return true;
+        else
+            return false;
     }
 }
