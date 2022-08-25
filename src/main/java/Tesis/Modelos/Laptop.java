@@ -1,13 +1,10 @@
 package Tesis.Modelos;
 
-import Tesis.Util.SQL;
-
-import java.sql.Connection;
 import java.sql.Date;
-import java.text.MessageFormat;
 
 public class Laptop {
     private String nombre_PC;
+    private Date fechaReporte;
     private Date fecha_Registro;
 
     public Laptop() {
@@ -32,5 +29,13 @@ public class Laptop {
 
     public void setFecha_Registro(Date fecha_Registro) {
         this.fecha_Registro = fecha_Registro;
+    }
+
+    public Date getFechaReporte() {
+        return fechaReporte;
+    }
+
+    public void setFechaReporte(Date fechaReporte) {
+        this.fechaReporte = fechaReporte;
     }
 }

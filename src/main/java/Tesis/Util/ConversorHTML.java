@@ -31,7 +31,6 @@ public class ConversorHTML{
         String reporte="";
         reporte=sb.toString();
         reporte = reporte.replaceAll("(?m)^[ \t]*\r?\n", "");
-        //System.out.println(reporte);
 
         BufferedReader reader = new BufferedReader(new StringReader(reporte));
         return reader;
@@ -46,10 +45,21 @@ public class ConversorHTML{
         String aux="";
 
        aux = reader.readLine();
-       while (!(aux.equals("SYSTEM PRODUCT NAME"))) {
+       while (true) {
            if (aux.equals(nombrePC)) {
                laptop.setNombre_PC(reader.readLine());
            }
+
+           if(aux.equals("REPORT TIME")){
+               aux = reader.readLine();
+               if (aux.length()>11)
+                   aux = aux.substring(0,aux.length()-13);
+
+               Date fecha = Date.valueOf(aux);
+               laptop.setFechaReporte(fecha);
+               break;
+           }
+
             aux = reader.readLine();
         }
        return laptop;
@@ -61,6 +71,7 @@ public class ConversorHTML{
         String manufacturador = "MANUFACTURER";
         String serial = "SERIAL NUMBER";
         String capacidadFabrica = "DESIGN CAPACITY";
+        String capacidadActual = "FULL CHARGE CAPACITY";
 
         //Variables
         Bateria bateria = new Bateria();
@@ -80,6 +91,11 @@ public class ConversorHTML{
                 String conv = reader.readLine().substring(0,6);
                 conv = conv.replace(".","");
                 bateria.setCapacidad_carga_fabrica(Integer.valueOf(conv));
+            }
+            if (aux.equals(capacidadActual)) {
+                String conv = reader.readLine().replace(" mWh","");
+                conv = conv.replace(".","");
+                bateria.setCapacidadActual(Integer.valueOf(conv));
             }
             aux = reader.readLine();
         }

@@ -39,7 +39,6 @@ public class LaptopDAOImp implements ILaptopDAO{
                 rs.close();
                 return false;
             }
-
         }
         catch (SQLException ex){
             //Logear excepcion a futuro
