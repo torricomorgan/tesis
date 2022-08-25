@@ -1,15 +1,15 @@
-package Tesis;
+package Tesis.Util;
 
 import java.sql.*;
 
 public class SQL {
 
-    private static final String connectionUrl = "jdbc:sqlserver://tesis-baterias.database.windows.net:1433;database=baterias_db;user=torricomorgan@tesis-baterias;password=Passw0rd;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";
+    private static final String connectionUrl = "";
 
     public Connection conectar(){
         try {
-            // Load Tesis.SQL Server JDBC driver and establish connection.
-            System.out.print("Connecting to Tesis.SQL Server ... ");
+            // Load Tesis.Util.SQL Server JDBC driver and establish connection.
+            System.out.print("Connecting to Tesis.Util.SQL Server ... ");
             try (Connection connection = DriverManager.getConnection(connectionUrl)) {
                 System.out.println("Done.");
                 return connection;
@@ -25,6 +25,7 @@ public class SQL {
     public Boolean ejecutarQuery(String query, Connection conn){
         try(Statement stmt = conn.createStatement()){
             stmt.executeUpdate(query);
+            conn.commit();
             return true;
         }
         catch (SQLException ex){

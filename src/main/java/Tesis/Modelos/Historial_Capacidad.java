@@ -1,6 +1,6 @@
 package Tesis.Modelos;
 
-import Tesis.SQL;
+import Tesis.Util.SQL;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -64,13 +64,14 @@ public class Historial_Capacidad {
         this.idBateria = idBateria;
     }
 
+    /*
     public void insertarListaEnBase(Connection connection, List<Historial_Capacidad> listHistorialCapacidad){
         SQL sql = new SQL();
-        String query = "INSERT INTO baterias_db.dbo.historial_capacidad (capacidad_carga_actual, desgaste, fecha, id_bateria) " +
-                "VALUES ({0}, {1}, {2}, {3});";
         for (Historial_Capacidad hist: listHistorialCapacidad) {
-            query = MessageFormat.format(query, hist.getCapacidad_carga_actual(), hist.getDesgaste(),
-                    hist.getFecha(), hist.getIdBateria());
+            String query = "INSERT INTO baterias_db.dbo.historial_capacidad (capacidad_carga_actual, desgaste, fecha, id_bateria) " +
+                    "VALUES ({0}, {1}, ''{2}'', ''{3}'');";
+            query = MessageFormat.format(query, hist.getCapacidad_carga_actual().toString(), hist.getDesgaste().toString(),
+                    hist.getFecha().toString(), hist.getIdBateria());
             sql.ejecutarQuery(query,connection);
         }
     }
@@ -78,10 +79,10 @@ public class Historial_Capacidad {
     public void insertarEnBase(Connection connection, Historial_Capacidad historialCapacidad){
         SQL sql = new SQL();
         String query = "INSERT INTO baterias_db.dbo.historial_capacidad (capacidad_carga_actual, desgaste, fecha, id_bateria) " +
-                "VALUES ({0}, {1}, {2}, {3});";
-        query = MessageFormat.format(query, historialCapacidad.getCapacidad_carga_actual(), historialCapacidad.getDesgaste(),
-                historialCapacidad.getFecha(), historialCapacidad.getIdBateria());
+                "VALUES ({0}, {1}, ''{2}'', ''{3}'');";
+        query = MessageFormat.format(query, historialCapacidad.getCapacidad_carga_actual().toString(), historialCapacidad.getDesgaste().toString(),
+                historialCapacidad.getFecha().toString(), historialCapacidad.getIdBateria());
         sql.ejecutarQuery(query,connection);
-    }
+    }*/
 
 }

@@ -1,4 +1,4 @@
-package Tesis;
+package Tesis.Util;
 
 import Tesis.Modelos.Bateria;
 import Tesis.Modelos.Historial_Capacidad;
@@ -86,11 +86,12 @@ public class ConversorHTML{
         return bateria;
     }
 
-    public List<Historial_Capacidad> transformarDatosHistoricoBateria(BufferedReader reader) throws IOException {
+    public List<Historial_Capacidad> transformarDatosHistoricoBateria(BufferedReader reader, Bateria bateria) throws IOException {
         //Variables
         Historial_Capacidad historialCapacidad;
         List<Historial_Capacidad> listaCapacidades = new LinkedList<>();
         String aux="";
+        Float desgaste = 0f;
 
 
         while (!(aux.equals("DESIGN CAPACITY"))) {
@@ -99,6 +100,7 @@ public class ConversorHTML{
 
         while (true) {
             historialCapacidad = new Historial_Capacidad();
+            historialCapacidad.setIdBateria(bateria.getIdBateria());
 
             if ((aux = reader.readLine()).equals("AT FULL CHARGE")) {
                 break;
@@ -114,8 +116,11 @@ public class ConversorHTML{
                 aux = aux.substring(0,aux.length()-4);
                 aux = aux.replace(".","");
                 historialCapacidad.setCapacidad_carga_actual(Integer.valueOf(aux));
+                desgaste = ((1-((float)historialCapacidad.getCapacidad_carga_actual()/bateria.getCapacidad_carga_fabrica()))*100);
+                historialCapacidad.setDesgaste(desgaste);
                 listaCapacidades.add(historialCapacidad);
             }
+
             aux = reader.readLine();
         }
         return listaCapacidades;
