@@ -132,7 +132,7 @@ public class ConversorHTML{
                 aux = aux.substring(0,aux.length()-4);
                 aux = aux.replace(".","");
                 historialCapacidad.setCapacidad_carga_actual(Integer.valueOf(aux));
-                desgaste = ((1-((float)historialCapacidad.getCapacidad_carga_actual()/bateria.getCapacidad_carga_fabrica()))*100);
+                desgaste = ((1-((float)historialCapacidad.getCapacidad_carga_actual()/bateria.getCapacidad_carga_fabrica())));
                 historialCapacidad.setDesgaste(desgaste);
                 listaCapacidades.add(historialCapacidad);
             }

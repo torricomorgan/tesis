@@ -90,7 +90,7 @@ public class main {
                         histAux.setCapacidad_carga_actual(bateria.getCapacidadActual());
                         histAux.setFecha(laptop.getFechaReporte());
                         histAux.setIdBateria(bateria.getIdBateria());
-                        float desgaste = ((1-((float)bateria.getCapacidadActual()/bateria.getCapacidad_carga_fabrica()))*100);
+                        float desgaste = ((1-((float)bateria.getCapacidadActual()/bateria.getCapacidad_carga_fabrica())));
                         histAux.setDesgaste(desgaste);
                         histCapDAO.insertar(histAux);
                     }
