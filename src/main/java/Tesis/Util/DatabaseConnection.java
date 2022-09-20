@@ -15,7 +15,7 @@ public class DatabaseConnection {
         try {
             Properties props = new Properties();
             props.load(Thread.currentThread().getContextClassLoader().getResourceAsStream("config.properties"));
-            String url = props.getProperty("jdbc.url.pruebas");
+            String url = props.getProperty("jdbc.url");
 
             conn = DriverManager.getConnection(url);
         }
