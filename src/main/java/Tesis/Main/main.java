@@ -14,13 +14,10 @@ import java.sql.Date;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 public class main {
     //private static Logger logger = LogManager.getLogger(main.class);
-
-    //Ruta
-    private static final String rutaInicio = "D:\\Google Drive\\UPSA\\UPSA 2022\\Tesis I\\Mis documentos\\Reportes\\SinProcesar\\";
-    private static final String rutaDestino = "D:\\Google Drive\\UPSA\\UPSA 2022\\Tesis I\\Mis documentos\\Reportes\\Procesados\\";
 
     //Objetos
     private static final ConversorHTML conversorHTML = new ConversorHTML();
@@ -28,7 +25,20 @@ public class main {
     private static final IBateriaDAO bateriaDAO = new BateriaDAOImp();
     private static final IHistorial_CapacidadDAO histCapDAO = new Historial_CapacidadDAOImp();
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args){
+        String rutaInicio = "";
+        String rutaDestino = "";
+
+        try {
+            Properties props = new Properties();
+            props.load(Thread.currentThread().getContextClassLoader().getResourceAsStream("config.properties"));
+            rutaInicio = props.getProperty("ruta.inicio");
+            rutaDestino = props.getProperty("ruta.destino");
+        }
+        catch (IOException e){
+            //Log
+        }
+
         File path = new File(rutaInicio);
         File [] files = path.listFiles();
 
@@ -58,6 +68,9 @@ public class main {
 
                     capacidadList = conversorHTML.transformarDatosHistoricoBateria(datosHtml, bateria);
                 } //Fin del try del BufferReader
+                catch (IOException e){
+                    //Log
+                }
 
                 //Borrar luego
                 /*System.out.println(laptop.getNombre_PC());

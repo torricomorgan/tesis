@@ -1,8 +1,10 @@
 package Tesis.Util;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.Properties;
 
 public class DatabaseConnection {
 
@@ -10,13 +12,14 @@ public class DatabaseConnection {
 
     private DatabaseConnection()
     {
-        String url = "jdbc:sqlserver://tesis-baterias.database.windows.net:1433;database=baterias_db;" +
-                "user=torricomorgan@tesis-baterias;password=Passw0rd;" +
-                "encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";
         try {
+            Properties props = new Properties();
+            props.load(Thread.currentThread().getContextClassLoader().getResourceAsStream("config.properties"));
+            String url = props.getProperty("jdbc.url.pruebas");
+
             conn = DriverManager.getConnection(url);
         }
-        catch (SQLException e) {
+        catch (SQLException | IOException e) {
             e.printStackTrace();
         }
     }
